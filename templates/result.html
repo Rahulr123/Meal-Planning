@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal Planner Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Meal Planner Results</h1>
+
+    <h2>Recommended Meals:</h2>
+    <ul>
+    {% for meal in calculated_meals %}
+        <li>{{ meal }}</li>
+    {% endfor %}
+    </ul>
+
+    <a href="/">Go Back</a>
+</body>
+</html>
+

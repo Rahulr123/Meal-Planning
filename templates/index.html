@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>The Tastiest Meal Plan Ever - By Rahul</h1>
+
+    <form action="/calculate" method="post">
+        <h2>Nutritional Goals:</h2>
+
+        <label for="calorie_limit">Calorie Limit:</label><br>
+        <input type="number" id="calorie_limit" name="calorie_limit" value="1900" required><br>
+
+        <div class="macronutrient-group">
+            <div class="macronutrient">
+                <label for="protein_min">Minimum Protein (g):</label>
+                <input type="number" id="protein_min" name="protein_min" value="180" required>
+            </div>
+            <div class="macronutrient">
+                <label for="protein_max">Maximum Protein (g):</label>
+                <input type="number" id="protein_max" name="protein_max" value="300" required>
+            </div>
+        </div>
+
+        <div class="macronutrient-group">
+            <div class="macronutrient">
+                <label for="carb_min">Minimum Carbohydrates (g):</label>
+                <input type="number" id="carb_min" name="carb_min" value="150" required>
+            </div>
+            <div class="macronutrient">
+                <label for="carb_max">Maximum Carbohydrates (g):</label>
+                <input type="number" id="carb_max" name="carb_max" value="200" required>
+            </div>
+        </div>
+
+        <div class="macronutrient-group">
+            <div class="macronutrient">
+                <label for="fat_min">Minimum Fat (g):</label>
+                <input type="number" id="fat_min" name="fat_min" value="50" required>
+            </div>
+            <div class="macronutrient">
+                <label for="fat_max">Maximum Fat (g):</label>
+                <input type="number" id="fat_max" name="fat_max" value="90" required>
+            </div>
+        </div>
+
+        <hr>
+        <h2>Select Meals and Enter Quantities:</h2>
+
+        {% for index, row in df.iterrows() %}
+            <label for="meal_{{ index }}">{{ row['Name'] }}</label>
+            <input type="number" id="meal_{{ index }}" name="meal_{{ index }}" value="0" min="0"><br>
+        {% endfor %}
+
+        <br>
+        <input type="submit" value="Calculate Meals">
+    </form>
+</body>
+</html>
